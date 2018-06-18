@@ -138,20 +138,20 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="HandleManager.cpp" />
-    <ClCompile Include="Handles.cpp" />
+    <ClCompile Include="GizmoHandle.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="PickHandler.cpp" />
-    <ClCompile Include="TranslationHandles.cpp" />
+    <ClCompile Include="TranslationHandle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
     <ClInclude Include="HandleManager.h" />
-    <ClInclude Include="Handles.h" />
+    <ClInclude Include="GizmoHandle.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="PickHandler.h" />
-    <ClInclude Include="TranslationHandles.h" />
+    <ClInclude Include="TranslationHandle.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="config.cfg">

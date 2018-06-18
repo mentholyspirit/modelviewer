@@ -7,10 +7,12 @@
 class PickHandler : public osgGA::GUIEventHandler
 {
 private:
-	const HandleManager* m_HandleManager;
+	HandleManager* m_HandleManager;
+	bool m_MouseDown;
+
 public:
 
-	PickHandler(const HandleManager* handleManager);
+	PickHandler(HandleManager* handleManager);
 
 	~PickHandler() {}
 

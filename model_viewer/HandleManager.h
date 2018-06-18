@@ -1,16 +1,19 @@
 #pragma once
-#include "Handles.h"
+#include "GizmoHandle.h"
 
 #include <vector>
 
 class HandleManager
 {
 private:
-	std::vector<Handles*> m_Handles;
+	std::vector<GizmoHandle*> m_Handles;
+	GizmoHandle* m_HighlightedHandle;
+	void DisableHighlights();
 
 public:
-	void AddHandles(Handles* handles);
-	void Highlight();
+	void AddHandle(GizmoHandle* Handle);
+	bool HighlightPick(const osg::NodePath* nodePath);
+	bool IsHandleHighlighted() const;
 	void Drag();
 };
 

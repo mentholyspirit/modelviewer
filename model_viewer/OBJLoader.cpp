@@ -9,6 +9,8 @@
 #include <vector>
 
 
+using namespace osg;
+
 template<typename Out>
 void split(const std::string &s, char delim, Out result)
 {
@@ -20,17 +22,17 @@ void split(const std::string &s, char delim, Out result)
 	}
 }
 
-osg::ref_ptr<osg::Node> OBJLoader::LoadObj(const std::string& path)
+ref_ptr<Node> OBJLoader::LoadObj(const std::string& path)
 {
 	std::ifstream file(path);
 	if (!file.is_open())
 		return NULL;
 
-	osg::Geode* geode = new osg::Geode();
+	Geode* geode = new Geode();
 
-	osg::ref_ptr<osg::Geometry> polyGeom = new osg::Geometry();
+	ref_ptr<Geometry> polyGeom = new Geometry();
 
-	osg::ref_ptr<osg::Vec3Array> coords = new osg::Vec3Array();
+	ref_ptr<Vec3Array> coords = new Vec3Array();
 
 	std::vector<unsigned short> indices;
 
@@ -45,7 +47,7 @@ osg::ref_ptr<osg::Node> OBJLoader::LoadObj(const std::string& path)
 			float y = stof(elems[2]);
 			float z = stof(elems[3]);
 
-			coords->push_back(osg::Vec3(x, y, z));
+			coords->push_back(Vec3(x, y, z));
 		}
 		else if (elems[0].compare("f") == 0)
 		{
@@ -62,7 +64,7 @@ osg::ref_ptr<osg::Node> OBJLoader::LoadObj(const std::string& path)
 
 	polyGeom->setVertexArray(coords);
 
-	polyGeom->addPrimitiveSet(new osg::DrawElementsUShort(osg::PrimitiveSet::TRIANGLES, indices.size(), indices.data()));
+	polyGeom->addPrimitiveSet(new DrawElementsUShort(PrimitiveSet::TRIANGLES, indices.size(), indices.data()));
 	geode->addDrawable(polyGeom);
 
 	osgUtil::SmoothingVisitor sv;

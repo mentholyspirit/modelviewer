@@ -2,8 +2,8 @@
 #include "Config.h"
 #include "OBJLoader.h"
 #include "PickHandler.h"
+#include "TranslationHandle.h"
 #include "HandleManager.h"
-#include "TranslationHandles.h"
 #include <windows.h>
 #include <iostream>
 #include <osgViewer/Viewer>
@@ -12,6 +12,7 @@
 #include <osgDB/ReadFile>
 #include <osgUtil/Optimizer>
 
+using namespace osg;
 
 INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	PSTR lpCmdLine, INT nCmdShow)
@@ -21,25 +22,25 @@ INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	MVLOG(cfg.objectToLoad.c_str());
 
 
-	osg::ref_ptr<osg::Group> root = new osg::Group;
+	ref_ptr<Group> root = new Group;
 
-	osg::ref_ptr<osg::Node> model = OBJLoader::LoadObj(cfg.objectToLoad);
+	ref_ptr<Node> model = OBJLoader::LoadObj(cfg.objectToLoad);
 
-	osg::ref_ptr<osg::MatrixTransform> matrixTransform = new osg::MatrixTransform();
-	matrixTransform->setMatrix(osg::Matrix::scale(0.5, 0.5, 0.5));
+	ref_ptr<MatrixTransform> matrixTransform = new MatrixTransform();
+	matrixTransform->setMatrix(Matrix::scale(0.5, 0.5, 0.5));
 	matrixTransform->addChild(model);
 	root->addChild(matrixTransform);
 
-	osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
+	ref_ptr<GraphicsContext::Traits> traits = new GraphicsContext::Traits;
 	traits->x = 100;
 	traits->y = 100;
-	traits->width = 800;
-	traits->height = 800;
+	traits->width = 640;
+	traits->height = 480;
 	traits->windowDecoration = true;
 	traits->doubleBuffer = true;
 	traits->sharedContext = 0;
 
-	osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
+	ref_ptr<GraphicsContext> gc = GraphicsContext::createGraphicsContext(traits.get());
 	osgViewer::View* view = new osgViewer::View();
 
 	HandleManager handleManager;
@@ -51,13 +52,12 @@ INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	osgViewer::CompositeViewer viewer;
 	viewer.addView(view);
 
-	view->getCamera()->setViewport(new osg::Viewport(0, 0, traits->width, traits->height));
+	view->getCamera()->setViewport(new Viewport(0, 0, traits->width, traits->height));
 	view->getCamera()->setGraphicsContext(gc.get());
+	ref_ptr<TranslationHandle> translationHandle = new TranslationHandle(Vec4(1, 0, 0, 0));
+	handleManager.AddHandle(translationHandle);
 
-	osg::ref_ptr<TranslationHandles> translationHandles = new TranslationHandles();
-	handleManager.AddHandles(translationHandles);
-
-	root->addChild(translationHandles);
+	root->addChild(translationHandle);
 
 	MVLOG("Loaded .obj file.");
 	viewer.run();

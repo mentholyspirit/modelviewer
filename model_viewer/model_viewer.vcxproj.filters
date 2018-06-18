@@ -30,13 +30,13 @@
     <ClCompile Include="PickHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Handles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TranslationHandles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HandleManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TranslationHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GizmoHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,13 +53,13 @@
     <ClInclude Include="PickHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Handles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TranslationHandles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HandleManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TranslationHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GizmoHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
