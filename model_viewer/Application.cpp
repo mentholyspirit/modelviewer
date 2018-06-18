@@ -13,6 +13,7 @@
 #include <osgDB/ReadFile>
 #include <osgUtil/Optimizer>
 #include <osg/Depth>
+#include <osgGA/TrackballManipulator>
 
 using namespace osg;
 
@@ -56,6 +57,14 @@ INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	view->getCamera()->setViewport(new Viewport(0, 0, traits->width, traits->height));
 	view->getCamera()->setGraphicsContext(gc.get());
+	ref_ptr<osgGA::TrackballManipulator> trackballManipulator = new osgGA::TrackballManipulator();
+	trackballManipulator->setAllowThrow(false);
+	Vec3 eye(5.0f, 5.0f, 5.0f);
+	Vec3 center(0.0f, 0.0f, 0.0f);
+	Vec3 up(0.0f, 1.0f, 0.0f);
+	trackballManipulator->setHomePosition(eye, center, up);
+	view->setCameraManipulator(trackballManipulator);
+
 	GizmoBase gizmoBase(&handleManager, matrixTransform, view->getCamera());
 
 	MVLOG("Loaded .obj file.");

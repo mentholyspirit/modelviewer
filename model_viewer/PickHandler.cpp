@@ -17,8 +17,14 @@ inline bool Pick(HandleManager* handleManager, osgViewer::View* view, const osgG
 	osgUtil::LineSegmentIntersector::Intersections intersections;
 	if (view->computeIntersections(event, intersections))
 	{
-		osgUtil::LineSegmentIntersector::Intersection intersection = *intersections.begin();
-		return handleManager->HighlightPick(&intersection.nodePath);
+		for (osgUtil::LineSegmentIntersector::Intersection intersection : intersections)
+		{
+			if (handleManager->HighlightPick(&intersection.nodePath))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	else
 	{
