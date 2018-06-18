@@ -42,6 +42,9 @@
     <ClCompile Include="GizmoBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RotationHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logging.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GizmoBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

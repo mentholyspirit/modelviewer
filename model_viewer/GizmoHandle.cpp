@@ -18,6 +18,7 @@ static inline Vec4 Lerp(Vec4 a, Vec4 b, float t)
 
 void GizmoHandle::HighlightSubNodes(Group* node, bool highlight)
 {
+	//If node is a Geode, apply color, otherwise descend to children
 	Geode* geode = dynamic_cast<Geode*>(node);
 	if (geode)
 	{

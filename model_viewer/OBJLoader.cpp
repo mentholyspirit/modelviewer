@@ -36,6 +36,7 @@ ref_ptr<Node> OBJLoader::LoadObj(const std::string& path)
 
 	std::vector<unsigned short> indices;
 
+	//if line starts with 'v', we have a vertex, if it starts with 'f', we have a triangle
 	std::string line;
 	std::string elems[4];
 	while (getline(file, line))

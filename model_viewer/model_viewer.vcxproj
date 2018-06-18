@@ -143,6 +143,7 @@
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="PickHandler.cpp" />
+    <ClCompile Include="RotationHandle.cpp" />
     <ClCompile Include="TranslationHandle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Logging.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="PickHandler.h" />
+    <ClInclude Include="RotationHandle.h" />
     <ClInclude Include="TranslationHandle.h" />
   </ItemGroup>
   <ItemGroup>

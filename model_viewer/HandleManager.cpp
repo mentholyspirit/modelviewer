@@ -16,6 +16,7 @@ bool HandleManager::HighlightPick(const NodePath* nodePath)
 			Node* node = (*nodePath)[p];
 			GizmoHandle* handle = dynamic_cast<GizmoHandle*>(node);
 
+			//Highlight the intersected handle
 			if (handle != nullptr)
 			{
 				if (m_HighlightedHandle != handle)

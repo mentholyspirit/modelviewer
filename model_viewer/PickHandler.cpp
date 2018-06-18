@@ -14,6 +14,7 @@ PickHandler::PickHandler(HandleManager* handleManager)
 
 inline bool Pick(HandleManager* handleManager, osgViewer::View* view, const osgGA::GUIEventAdapter& event)
 {
+	//Get all the intersections, even if they are behind geometry
 	osgUtil::LineSegmentIntersector::Intersections intersections;
 	if (view->computeIntersections(event, intersections))
 	{
@@ -36,14 +37,15 @@ inline bool Pick(HandleManager* handleManager, osgViewer::View* view, const osgG
 bool PickHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa)
 {
 	osgViewer::View* view = dynamic_cast<osgViewer::View*>(&aa);
+
 	if (!view)
 		return false;
-	
-	int c = ea.getEventType();
+
 	switch (ea.getEventType())
 	{
 		case osgGA::GUIEventAdapter::FRAME:
 		{
+			//if not dragging, highlight intersected handles
 			m_LastMousePosition = Vec2(ea.getX(), ea.getY());
 			return !m_MouseDown && Pick(m_HandleManager, view, ea);
 		}
@@ -51,12 +53,13 @@ bool PickHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapt
 		{
 			if (m_HandleManager->IsHandleHighlighted())
 			{
+				//if a handle is highlighted, consume the event
 				m_HandleManager->Drag(ea, Vec2(ea.getX(), ea.getY()) - m_LastMousePosition);
 				return true;
 			}
 			return false;
 		}
-		case (osgGA::GUIEventAdapter::PUSH):
+		case osgGA::GUIEventAdapter::PUSH:
 		{
 			m_MouseDown = true;
 			break;
