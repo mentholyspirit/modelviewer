@@ -71,3 +71,26 @@ GizmoHandle::GizmoHandle(Vec4 color)
 	m_Root = new MatrixTransform();
 	this->addChild(m_Root);
 }
+
+void GizmoHandle::SetBase(MatrixTransform* base)
+{
+	m_Base = base;
+}
+
+void GizmoHandle::SetMouseSensitivity(float sensitivity)
+{
+	m_MouseSensitivity = sensitivity;
+}
+
+void GizmoHandle::SetCamera(const Camera* camera)
+{
+	m_Camera = camera;
+}
+
+Vec3 GizmoHandle::WorldToScreenPoint(Vec3 worldPoint) const
+{
+	Matrix win = m_Camera->getViewport()->computeWindowMatrix();
+	Matrix view = m_Camera->getViewMatrix();
+	Matrix proj = m_Camera->getProjectionMatrix();
+	return worldPoint * view * proj * win;
+}

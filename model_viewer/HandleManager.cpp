@@ -44,3 +44,10 @@ void HandleManager::DisableHighlights()
 	m_HighlightedHandle->ToggleHighlight(false);
 	m_HighlightedHandle = nullptr;
 }
+
+void HandleManager::Drag(const osgGA::GUIEventAdapter& ea, Vec2 mouseDelta)
+{
+	if (m_HighlightedHandle == nullptr)
+		return;
+	m_HighlightedHandle->Drag(ea, mouseDelta);
+}

@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="GizmoBase.cpp" />
     <ClCompile Include="HandleManager.cpp" />
     <ClCompile Include="GizmoHandle.cpp" />
     <ClCompile Include="Logging.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
+    <ClInclude Include="GizmoBase.h" />
     <ClInclude Include="HandleManager.h" />
     <ClInclude Include="GizmoHandle.h" />
     <ClInclude Include="Logging.h" />

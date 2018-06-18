@@ -38,11 +38,17 @@ bool PickHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapt
 	{
 		case osgGA::GUIEventAdapter::FRAME:
 		{
+			m_LastMousePosition = Vec2(ea.getX(), ea.getY());
 			return !m_MouseDown && Pick(m_HandleManager, view, ea);
 		}
 		case osgGA::GUIEventAdapter::DRAG:
 		{
-			return m_HandleManager->IsHandleHighlighted();
+			if (m_HandleManager->IsHandleHighlighted())
+			{
+				m_HandleManager->Drag(ea, Vec2(ea.getX(), ea.getY()) - m_LastMousePosition);
+				return true;
+			}
+			return false;
 		}
 		case (osgGA::GUIEventAdapter::PUSH):
 		{

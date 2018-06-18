@@ -9,6 +9,7 @@ class PickHandler : public osgGA::GUIEventHandler
 private:
 	HandleManager* m_HandleManager;
 	bool m_MouseDown;
+	osg::Vec2 m_LastMousePosition;
 
 public:
 
@@ -16,6 +17,6 @@ public:
 
 	~PickHandler() {}
 
-	bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
+	bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa) override;
 };
 

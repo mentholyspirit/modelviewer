@@ -4,6 +4,7 @@
 #include "PickHandler.h"
 #include "TranslationHandle.h"
 #include "HandleManager.h"
+#include "GizmoBase.h"
 #include <windows.h>
 #include <iostream>
 #include <osgViewer/Viewer>
@@ -11,6 +12,7 @@
 #include <osgViewer/config/SingleWindow>
 #include <osgDB/ReadFile>
 #include <osgUtil/Optimizer>
+#include <osg/Depth>
 
 using namespace osg;
 
@@ -54,10 +56,7 @@ INT WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	view->getCamera()->setViewport(new Viewport(0, 0, traits->width, traits->height));
 	view->getCamera()->setGraphicsContext(gc.get());
-	ref_ptr<TranslationHandle> translationHandle = new TranslationHandle(Vec4(1, 0, 0, 0));
-	handleManager.AddHandle(translationHandle);
-
-	root->addChild(translationHandle);
+	GizmoBase gizmoBase(&handleManager, matrixTransform, view->getCamera());
 
 	MVLOG("Loaded .obj file.");
 	viewer.run();

@@ -1,7 +1,7 @@
 #pragma once
 #include "GizmoHandle.h"
-
 #include <vector>
+#include <osgGA/GUIEventAdapter>
 
 class HandleManager
 {
@@ -14,6 +14,6 @@ public:
 	void AddHandle(GizmoHandle* Handle);
 	bool HighlightPick(const osg::NodePath* nodePath);
 	bool IsHandleHighlighted() const;
-	void Drag();
+	void Drag(const osgGA::GUIEventAdapter& ea, osg::Vec2 mouseDelta);
 };
 
